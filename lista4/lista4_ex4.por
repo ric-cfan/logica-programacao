@@ -12,7 +12,7 @@ programa
 		
 		se(numero < 0) {
 			limpa()
-			escreva("Foram digitados:\n\n", intervaloUm, " número(s) no intervalo de [0-25]\n", intervaloDois, " número(s) no intervalo de [26-50]\n", intervaloTres, " número(s) no intervalo [51-75]\n", intervaloQuatro, " número(s) no intervalo [76-100]\n")
+			escreva("Foram digitados ", (numeroInputs - 1)," numero(s), dentre ele(s):\n\n", intervaloUm, " número(s) no intervalo de [0-25]\n", intervaloDois, " número(s) no intervalo de [26-50]\n", intervaloTres, " número(s) no intervalo [51-75]\n", intervaloQuatro, " número(s) no intervalo [76-100]\n")
 		}
 		senao se(numero < 26) {
 			intervaloUm++
@@ -42,7 +42,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 120; 
+ * @POSICAO-CURSOR = 465; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

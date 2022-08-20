@@ -1,37 +1,43 @@
 programa
 {
-	inclua biblioteca Matematica --> math
-
-	inteiro numeroNotas = 0
-	real soma = 0.0, media, nota
-	caracter continuar
+	inclua biblioteca Tipos --> tipo
+	
+	inteiro contadorGeral = 0, contadorPositivo = 0, contadorNegativo = 0, valor
+	real media = 0.0, contadorGeralReal, contadorPositivoReal, contadorNegativoReal, porcentagemPositivo = 0.0, porcentagemNegativo = 0.0
 	
 	funcao inicio()
 	{
 		limpa()
-		escreva("Digite uma nota do aluno ", (numeroNotas + 1), ": ")
-		leia(nota)
+		escreva("Digite o ", (contadorGeral + 1), "º valor, ou zero (0) para exibir os resultados: ")
+		leia(valor)
 		
-		numeroNotas++
-		soma += nota
-		
-		escreva("\nDeseja adicionar outra nota? Digite \"s\" ou \"S\" em caso afirmativo, ou outro caractere caso negativo: ")
-		leia(continuar)
-		
-		se (continuar == 's' ou continuar == 'S') {
-			inicio()
-		}	
-		senao {
+		contadorGeral++
+		media += valor
+		se(valor == 0) {
+			contadorGeral--
 			limpa()
-			media = (soma / numeroNotas)
-			media = math.arredondar(media, 2)	
-			se(numeroNotas == 1) {
-				escreva("A média de ", numeroNotas, " única nota é ela mesma: ", media, ".\n")
+			
+			contadorGeralReal = tipo.inteiro_para_real(contadorGeral)
+			contadorPositivoReal = tipo.inteiro_para_real(contadorPositivo)
+			contadorNegativoReal = tipo.inteiro_para_real(contadorNegativo)
+			se(contadorPositivo != 0) {
+				porcentagemPositivo = (contadorPositivoReal / contadorGeralReal* 100)
 			}
-			senao {
-				escreva("A média das ", numeroNotas, " notas é: ", media, ".\n")
+			se(contadorNegativo != 0) {
+				porcentagemNegativo = (contadorNegativoReal / contadorGeralReal * 100)
 			}
-		}	
+			media = (media / contadorGeralReal)
+
+			escreva("A média dos valores digitados foi: ", media, "\nA quantidade de valores positivos digitados foi: ", contadorPositivo, "\nA quantidade de valores negativos digitados foi: ", contadorNegativo, "\nA porcentagem de valores positivos foi: ", porcentagemPositivo, "%\nA porcentagem de valores negativos foi: ", porcentagemNegativo, "%\n\n")
+		}
+		senao se(valor < 0) {
+			contadorNegativo++
+			inicio()
+		}
+		senao {
+			contadorPositivo++
+			inicio()
+		}
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -39,7 +45,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 285; 
+ * @POSICAO-CURSOR = 1193; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

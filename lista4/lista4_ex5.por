@@ -1,31 +1,39 @@
 programa
 {
-	inteiro contadorPositivo = 0, contadorNegativo = 0, contadorGeral = 0
-	real numero, mediaPar = 0.0, mediaGeral = 0.0
+	inclua biblioteca Tipos --> tipo
+	
+	inteiro contadorPar = 0, contadorImpar = 0, contadorGeral = 0, numero
+	real mediaPar = 0.0, mediaGeral = 0.0, numeroReal
 	
 	funcao inicio()
 	{
 		limpa()
-		escreva("Esse programa utiliza números maiores ou menores que zero (0), ao colocar zero, o programa irá exibir os resultados.\n\nDigite o ", (contadorGeral + 1), "º número: ")
+		escreva("Esse programa utiliza números maiores que zero (0), ao colocar um número igual a zero (0), o programa irá exibir os resultados.\n\nDigite o ", (contadorGeral + 1), "º número: ")
 		leia(numero)
-		mediaGeral += numero
-		
-		se(numero > 0) {
-			contadorPositivo++
-			mediaPar += numero
-			contadorGeral = contadorPositivo + contadorNegativo
-			inicio()
-		}
-		senao se(numero < 0) {
-			contadorNegativo++
-			contadorGeral = contadorPositivo + contadorNegativo
+		numeroReal = tipo.inteiro_para_real(numero)
+		mediaGeral += numeroReal
+
+		se(numero < 0) {
+			limpa()
+			escreva("O programa não aceita números negativos. Por favor, tente novamente.\n\n")
 			inicio()
 		}
 		senao se(numero == 0) {
-			mediaPar = (mediaPar / contadorPositivo)
+			mediaPar = (mediaPar / contadorPar)
 			mediaGeral = (mediaGeral / contadorGeral)
 			limpa()
-			escreva("\nA quantidade de numeros pares digitados é: ", contadorPositivo, "\nA quantidade de numeros impares digitados é: ", contadorNegativo, "\nA média dos valores pares é: ", mediaPar, "\nA média dos valores gerais é: ", mediaGeral, "\n")
+			escreva("\nA quantidade de numeros pares digitados é: ", contadorPar, "\nA quantidade de numeros impares digitados é: ", contadorImpar, "\nA média dos valores pares é: ", mediaPar, "\nA média dos valores gerais é: ", mediaGeral, "\n")
+		}
+		senao se(numero % 2 == 0) {
+			contadorPar++
+			mediaPar += numeroReal
+			contadorGeral = contadorPar + contadorImpar
+			inicio()
+		}
+		senao se(numero % 2 != 0) {
+			contadorImpar++
+			contadorGeral = contadorPar + contadorImpar
+			inicio()
 		}
 	}
 }
@@ -34,7 +42,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 776; 
+ * @POSICAO-CURSOR = 783; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
